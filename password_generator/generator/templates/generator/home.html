@@ -1,0 +1,152 @@
+{% extends 'generator/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <h1>🛡️ Secure Password Generator 🔑</h1>
+    <hr>
+    <form action="{% url 'password' %}">
+        <div>
+            <label for="password_length">Password Length:</label>
+            <select name="length" id="password_length">
+                <optgroup label="Weak">
+                    {% for i in weak_range %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </optgroup>
+
+                <optgroup label="Strong">
+                    {% for i in strong_range %}
+                    {% if i == 16 %}
+                    <option value="{{ i }}" selected="selected">{{ i }}</option>
+                    {% else %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </optgroup>
+
+                <optgroup label="Unbelievable">
+                    {% for i in unbelievable_range %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </optgroup>
+            </select>
+        </div>
+
+
+        <div>
+            <label class="s-left" for="lowercase">Include Lowercase Characters:</label>
+            <label class="s-right" for=""><input type="checkbox" name="lowercase" id="lowercase" checked disabled />( e.g. abcdefgh )</label>
+        </div>
+
+        <div>
+            <label class="s-left" for="uppercase">Include Uppercase Characters:</label>
+            <label class="s-right" for=""><input type="checkbox" name="uppercase" id="uppercase">( e.g. ABCDEFGH )</label>
+        </div>
+
+        <div>
+            <label class="s-left" for="numbers">Include Numbers:</label>
+            <label class="s-right" for=""><input type="checkbox" name="numbers" id="numbers">( e.g. 123456 )</label>
+        </div>
+
+        <div>
+            <label class="s-left" for="symbols">Include Symbols:</label>
+            <label class="s-right" for=""><input type="checkbox" name="symbols" id="symbols">( e.g. @#$% )</label>
+        </div>
+
+        <div>
+            <input class="button btn btn-success" type="submit" value="Generate Password">
+        </div>
+
+    </form>
+</div>
+
+<style>
+    div {
+        display: block;
+        font-family: 'Recursive', sans-serif;
+        font-size: 14px;
+    }
+
+    .s-left {
+        display: inline;
+        text-align: left;
+        float: left;
+        width: 240px;
+        margin: 0;
+        padding: 0;
+        height: 27px;
+    }
+
+    #password_length {
+        
+        width: 200px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        margin: 2px 0 0 4px;
+    }
+
+    .s-right {
+        display: inline;
+        text-align: left;
+        float: left;
+        width: 520px;
+        margin: 0;
+        padding: 0;
+        height: 27px;
+    }
+
+    .button {
+        box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+        width: 900px;
+        margin: 15px auto;
+        padding: 15px 30px 10px 30px;
+        background: #ffffff;
+        line-height: 23px;
+        border: 1px solid #dfdfdf;
+        border-radius: 10px 10px;
+        overflow: hidden;
+    }
+
+    input[type="checkbox"i] {
+        background-color: initial;
+        cursor: default;
+        -webkit-appearance: checkbox;
+        box-sizing: border-box;
+        margin: 3px 3px 3px 4px;
+        padding: initial;
+        border: initial;
+    }
+
+    input {
+        -webkit-writing-mode: horizontal-tb !important;
+        text-rendering: auto;
+        color: -internal-light-dark-color(black, white);
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+        text-align: start;
+        -webkit-appearance: textfield;
+        background-color: -internal-light-dark-color(rgb(255, 255, 255), rgb(59, 59, 59));
+        -webkit-rtl-ordering: logical;
+        cursor: text;
+        margin: 0em;
+        font: 400 13.3333px Arial;
+        padding: 1px 2px;
+        border-width: 2px;
+        border-style: inset;
+        border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
+        border-image: initial;
+    }
+</style>
+
+{% endblock %}

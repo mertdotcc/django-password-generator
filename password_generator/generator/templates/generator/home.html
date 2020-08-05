@@ -1,12 +1,9 @@
 {% extends 'generator/base.html' %}
-{% load crispy_forms_tags %}
 
 {% block content %}
 
-
-
 <div class="container">
-    <h1>🛡️ Secure Password Generator 🔑</h1>
+    <h1 style="text-align: center;">🛡️ Secure Password Generator 🔑</h1>
     <hr>
     <form action="{% url 'password' %}">
         <div>
@@ -58,7 +55,7 @@
         </div>
 
         <div>
-            <input class="button btn btn-success" type="submit" value="Generate Password">
+            <input class="mt-2 button btn btn-success" type="submit" value="Generate Password">
         </div>
 
     </form>
